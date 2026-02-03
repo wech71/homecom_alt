@@ -7,7 +7,7 @@ from aiohttp.client import ClientTimeout
 OAUTH_DOMAIN: Final[str] = "https://singlekey-id.com"
 OAUTH_LOGIN: Final[str] = "/auth/connect/authorize"
 OAUTH_LOGIN_PARAMS: Final[dict] = {
-    "redirect_uri": "com.bosch.tt.dashtt.pointt://app/login",
+    "redirect_uri": "com.buderus.tt.dashtt://app/login",
     "client_id": "762162C0-FA2D-4540-AE66-6489F189FADC",
     "response_type": "code",
     "prompt": "login",
@@ -19,12 +19,12 @@ OAUTH_LOGIN_PARAMS: Final[dict] = {
         "bacon hcc.tariff.read"
     ),
     "code_challenge_method": "S256",
-    "style_id": "tt_bsch",
+    "style_id": "tt_bud",
 }
 OAUTH_ENDPOINT: Final[str] = "/auth/connect/token"
 OAUTH_PARAMS: Final[dict] = {
     "grant_type": "authorization_code",
-    "redirect_uri": "com.bosch.tt.dashtt.pointt://app/login",
+    "redirect_uri": "com.buderus.tt.dashtt://app/login",
     "client_id": "762162C0-FA2D-4540-AE66-6489F189FADC",
 }
 

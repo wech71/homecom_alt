@@ -187,7 +187,7 @@ class HomeComAlt:
             headers["Content-Type"] = "application/x-www-form-urlencoded"
 
         try:
-            _LOGGER.debug("Requesting %s, method: %s", url, method)
+            _LOGGER.debug("Requesting %s, method: %s, data: %s", url, method, data)
             resp = await self._session.request(
                 method,
                 url,
@@ -198,13 +198,17 @@ class HomeComAlt:
                 headers=headers,
                 allow_redirects=True,
             )
+            _LOGGER.debug("Response Status %s", resp.status)
         except ClientResponseError as error:
+            _LOGGER.debug("ClientResponseError.Status=%s", error.status)
+        
             if error.status == HTTPStatus.UNAUTHORIZED.value:
                 raise AuthFailedError("Authorization has failed") from error
             if (
                 error.status == HTTPStatus.BAD_REQUEST.value
                 and url == "https://singlekey-id.com/auth/connect/token"
             ):
+                _LOGGER.warn("=> BAD_REQUEST for url %s", url)
                 return None
             if error.status == HTTPStatus.NOT_FOUND.value:
                 # This url is not support for this type of device, just ignore it
@@ -378,6 +382,10 @@ class HomeComAlt:
             2,
         )
         try:
+            if response is None:
+                _LOGGER.error("Received None response. No data to retrieve.")
+                return None
+
             return await response.json()
         except ValueError as error:
             raise AuthFailedError("Authorization has failed") from error

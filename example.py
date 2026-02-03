@@ -20,10 +20,11 @@ from homecom_alt import (
     InvalidSensorDataError,
 )
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
+#logging.getLogger("homecom_alt").setLevel(logging.DEBUG)
 
 USERNAME = "username"
-CODE = "code"
+CODE = "codexxxxxx-1"
 
 
 def print_status(data: BHCDeviceRac) -> None:
@@ -131,7 +132,7 @@ async def main() -> None:
             devices = await base_instance.async_get_devices()
             devices = [
                 device_classes[device["deviceType"]](
-                    websession, options, device["deviceId"]
+                    websession, options, device["deviceId"], auth_provider=True
                 )
                 for device in await devices
                 if device["deviceType"] in device_classes
