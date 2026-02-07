@@ -10,14 +10,14 @@ import jwt
 import pytest
 from aiohttp import ClientConnectorError, ClientResponseError, ClientSession
 
-from homecom_alt import (
+from mybuderus_api import (
     ApiError,
     AuthFailedError,
     ConnectionOptions,
     HomeComAlt,
     NotRespondingError,
 )
-from homecom_alt.const import OAUTH_DOMAIN, OAUTH_ENDPOINT, OAUTH_PARAMS
+from mybuderus_api.const import OAUTH_DOMAIN, OAUTH_ENDPOINT, OAUTH_PARAMS
 
 
 def create_test_jwt(expiration: int = 9999999999) -> str:
@@ -177,8 +177,8 @@ async def test_check_jwt_valid() -> None:
         username="test_user",
         code="test_code",
     )
-    homecom_alt = await HomeComAlt.create(session, options, auth_provider=True)
-    assert homecom_alt.check_jwt() is True
+    mybuderus_api = await HomeComAlt.create(session, options, auth_provider=True)
+    assert mybuderus_api.check_jwt() is True
     await session.close()
 
 
@@ -192,11 +192,11 @@ async def test_check_jwt_invalid() -> None:
         username="test_user",
         code="test_code",
     )
-    homecom_alt = await HomeComAlt.create(session, options, auth_provider=True)
-    homecom_alt._options.token = create_test_jwt(
+    mybuderus_api = await HomeComAlt.create(session, options, auth_provider=True)
+    mybuderus_api._options.token = create_test_jwt(
         expiration=int((datetime.now(UTC) - timedelta(days=1)).timestamp())
     )
-    assert homecom_alt.check_jwt() is False
+    assert mybuderus_api.check_jwt() is False
     await session.close()
 
 
@@ -210,10 +210,10 @@ async def test_get_token_valid_jwt() -> None:
         username="test_user",
         code="test_code",
     )
-    homecom_alt = await HomeComAlt.create(session, options, auth_provider=True)
+    mybuderus_api = await HomeComAlt.create(session, options, auth_provider=True)
 
-    with patch.object(homecom_alt, "check_jwt", return_value=True):
-        assert await homecom_alt.get_token() is None
+    with patch.object(mybuderus_api, "check_jwt", return_value=True):
+        assert await mybuderus_api.get_token() is None
 
     await session.close()
 

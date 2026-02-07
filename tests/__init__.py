@@ -1,1 +1,1 @@
-"""Tests for homecom_alt package."""
+"""Tests for mybuderus_api package."""

@@ -66,4 +66,4 @@ lint.ignore = [
 max-complexity = 25
 
 [tool.coverage.run]
-source = ["homecom_alt"]
+source = ["mybuderus_api"]

@@ -1,4 +1,4 @@
-"""Setup module for homecom_alt."""
+"""Setup module for mybuderus_api."""
 
 from pathlib import Path
 
@@ -9,7 +9,7 @@ README_FILE = PROJECT_DIR / "README.md"
 VERSION = "1.4.16"
 
 setup(
-    name="homecom_alt",
+    name="mybuderus_api",
     version=VERSION,
     author="serbanb11",
     description=("Python wrapper for controlling devices managed by HomeCom Easy APP."),
@@ -18,8 +18,8 @@ setup(
     include_package_data=True,
     url="https://github.com/serbanb11/homecom-alt",
     license="MIT",
-    packages=["homecom_alt"],
-    package_data={"homecom_alt": ["py.typed"]},
+    packages=["mybuderus_api"],
+    package_data={"mybuderus_api": ["py.typed"]},
     python_requires=">=3.12",
     install_requires=["aiohttp>=3.9.4", "tenacity", "PyJWT>=2.1.0"],
     classifiers=[

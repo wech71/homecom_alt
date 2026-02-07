@@ -1,4 +1,4 @@
-"""Constants for homecom_alt library."""
+"""Constants for mybuderus_api library."""
 
 from typing import Final
 

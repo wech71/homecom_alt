@@ -43,4 +43,4 @@ repos:
       - id: mypy
         additional_dependencies:
           - types-orjson
-        files: ^(homecom_alt)/.+\.py$
+        files: ^(mybuderus_api)/.+\.py$

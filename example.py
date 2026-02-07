@@ -1,4 +1,4 @@
-"""An example of using homecom_alt package."""
+"""An example of using mybuderus_api package."""
 
 import asyncio
 import json
@@ -8,7 +8,7 @@ from dataclasses import asdict
 
 from aiohttp import ClientConnectorError, ClientError, ClientSession
 
-from homecom_alt import (
+from mybuderus_api import (
     ApiError,
     AuthFailedError,
     BHCDeviceK40,
@@ -21,7 +21,7 @@ from homecom_alt import (
 )
 
 logging.basicConfig(level=logging.INFO)
-#logging.getLogger("homecom_alt").setLevel(logging.DEBUG)
+#logging.getLogger("mybuderus_api").setLevel(logging.DEBUG)
 
 USERNAME = "username"
 CODE = "codexxxxxx-1"
